@@ -1,0 +1,7 @@
+<mat-form-field>
+  <mat-select placeholder="页码" [(value)]="selected">
+    <mat-option *ngFor="let item of list" [value]="item.number" (click)="this.change()">
+      {{ item.number }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

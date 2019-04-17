@@ -1,0 +1,125 @@
+/*# sourceURL=/css/article.css */
+/*@ sourceURL=/css/article.css */
+/*文章样式部分*/
+h1{
+    font-size: 36px;
+}
+
+h2{
+    font-size: 30px;
+}
+
+h3{
+    font-size: 24px;
+}
+
+h4{
+    font-size: 18px;
+}
+
+h5{
+    font-size: 14px;
+}
+
+h6{
+    font-size: 12px;
+}
+
+.content aside {
+    min-height: 0;
+}
+
+.article_play {
+    width: 100%;
+    min-height: 600px;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.article_play > span {
+    display: block;
+    padding: 10px 30px;
+    color: gray;
+    font-size: 0.9em;
+}
+
+.article_play .mold {
+    float: left;
+}
+
+.article_play .mold a {
+    text-decoration: none;
+    color: gray;
+}
+
+.article_play .mold a:hover {
+    color: lightblue;
+}
+
+.article_play .reading span {
+    color: lightblue;
+}
+
+.article_play h2 {
+    text-align: center;
+    padding: 10px 0;
+    color: gray;
+}
+
+.article_play article {
+    clear: both;
+    display: block;
+    width: 100%;
+    margin: 10px auto;
+    color: gray;
+    padding: 5px;
+    line-height: 1.7em;
+}
+
+.article_play article h2, h3, h4, h5, h6 {
+    /* text-indent: 3em; */
+    padding: 8px 0;
+    color: #00cddf;
+    text-shadow: 2px 0 5px #eae4e4;
+}
+
+.article_play article ul {
+    list-style: none;
+    display: block;
+    width: 84%;
+    margin: 0 auto;
+}
+
+.article_play article > ul > li {
+    display: block;
+    float: left;
+    font-size: 0.9em;
+    width: 23%;
+    text-align: center;
+    color: gray;
+}
+
+article > ul > li:first-child {
+    width: 31%;
+}
+
+.article_play hr {
+    clear: both
+}
+
+.article_play article p {
+    display: block;
+    clear: both;
+    font-size: 0.95em;
+}
+
+
+@media screen and (max-width: 846px) {
+    .article_play article ul {
+        width: 100%;
+    }
+
+    .article_play article > ul > li {
+        width: 100%;
+    }
+}

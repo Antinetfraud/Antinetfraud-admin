@@ -1,0 +1,68 @@
+<div class="row">
+  {{watch()}}
+  <div class="col m12 s12">
+    <div *ngIf="code===100" style="margin: 0,auto;text-align:center">
+      <app-loading></app-loading>
+    </div>
+
+    <div *ngIf="code===404">
+      <a routerLink="/admin/administrator/create">
+        <button class="btn waves-effect waves-ligh">新增管理员</button>
+      </a>
+      <a routerLink="/admin/administrator/recyclebin">
+        <button class="btn waves-effect waves-ligh">管理员回收站</button>
+      </a>
+      <h4 style="margin: 0,auto;text-align:center">没有数据</h4>
+    </div>
+
+    <div *ngIf="code!==404 && code!==100">
+      <mat-form-field>
+        <mat-select placeholder="页码" [(value)]="adminsPaginator.selected">
+          <mat-option *ngFor="let item of adminsPaginator.list" [value]="item.number" (click)="adminsPaginator.change()">
+            {{ item.number }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <a routerLink="/admin/administrator/create">
+        <button class="btn waves-effect waves-ligh">新增管理员</button>
+      </a>
+      <a routerLink="/admin/administrator/recyclebin">
+        <button class="btn waves-effect waves-ligh">管理员回收站</button>
+      </a>
+
+      <table class="highlight striped">
+        <thead>
+          <tr>
+            <th data-field="id">id</th>
+            <th data-field="name">name</th>
+            <th data-field="email">email</th>
+            <th data-field="level">level</th>
+            <th data-field="created_at">created_at</th>
+            <th data-field="updated_at">updated_at</th>
+            <th data-field="option">option</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let admin of admins.data; let i = index">
+            <td>{{admin.id}}</td>
+            <td>{{admin.name}}</td>
+            <td>{{admin.email}}</td>
+            <td>{{admin.level}}</td>
+            <td>{{admin.created_at}}</td>
+            <td>{{admin.updated_at}}</td>
+            <td style="width:150px" *ngIf="admin.name!==adminName">
+              <button (click)="destroyAction(admin.id,i)" class="btn-floating waves-effect waves-light red lighten-2" title="删除">
+                <i class="material-icons">delete</i>
+              </button>
+            </td>
+            <td style="width:150px" *ngIf="admin.name===adminName">
+              当前登录用户
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

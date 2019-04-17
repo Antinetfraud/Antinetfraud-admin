@@ -1,0 +1,67 @@
+<div class="row">
+  {{watch()}}
+  <div class="col m12 s12">
+    <div *ngIf="code===100" style="margin: 0,auto;text-align:center">
+      <app-loading></app-loading>
+    </div>
+    <div *ngIf="code===404">
+      <a routerLink="/admin/contribution/recyclebin">
+        <button class="btn">投稿回收站</button>
+      </a>
+      <h4 style="margin: 0,auto;text-align:center">没有数据</h4>
+    </div>
+    <div *ngIf="code===200">
+
+      <mat-form-field>
+        <mat-select placeholder="页码" [(value)]="contributionsPaginator.selected">
+          <mat-option *ngFor="let item of contributionsPaginator.list" [value]="item.number" (click)="contributionsPaginator.change()">
+            {{ item.number }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button class="btn disabled" id="DeleteBtn" (click)="destroyMultiple()">批量删除</button>
+      <a routerLink="/admin/contribution/recyclebin">
+        <button class="btn">投稿回收站</button>
+      </a>
+
+      <table class="highlight striped">
+        <thead>
+          <tr>
+            <th data-field="check" style="width:30px">
+              <input type="checkbox" id="selectAll" (click)="checkbox.selectAll()" />
+              <label for="selectAll"></label>
+            </th>
+            <th data-field="id">id</th>
+            <th data-field="user_name">title</th>
+            <th data-field="content">content</th>
+            <th data-field="content">type</th>
+            <th data-field="created_at">created_at</th>
+            <th data-field="option">option</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let contribution of contributions.data;let i = index">
+            <td>
+              <input type="checkbox" class="filled-in" id="{{contribution.id}}" (click)="checkbox.checked(contribution)" />
+              <label for="{{contribution.id}}"></label>
+            </td>
+            <td>{{contribution.id}}</td>
+            <td>
+              <a routerLink="/admin/contribution/show/{{contribution.id}}">{{contribution.title}}</a>
+            </td>
+            <td>{{contribution.content}}</td>
+            <td>{{contribution.type}}</td>
+            <td>{{contribution.created_at}}</td>
+            <td style="width:130px ">
+              <button (click)="destroyAction(contribution.id,i) " class="btn-floating waves-effect waves-light red lighten-2 ">
+                <i class="material-icons">delete</i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="row">
+  {{watch()}}
+  <a routerLink="/admin/notice/manger/1">
+    <button class="btn">返回公告管理</button>
+  </a>
+  <div class="col m12 s12">
+    <div *ngIf="code===100" style="margin: 0,auto;text-align:center">
+      <app-loading></app-loading>
+    </div>
+    <div *ngIf="code===404" style="margin: 0,auto;text-align:center">
+      <h4>没有数据</h4>
+    </div>
+    <div *ngIf="code===200">
+      <table class="highlight striped">
+        <thead>
+          <tr>
+            <th data-field="id">id</th>
+            <th data-field="title">title</th>
+            <th data-field="created_at">deleted_at</th>
+            <th data-field="option">option</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let notice of notices.data;let i=index">
+            <td>{{notice.id}}</td>
+            <td>
+              <a routerLink="/admin/notice/show/{{notice.id}}">{{notice.title}}</a>
+            </td>
+            <td>{{notice.deleted_at}}</td>
+            <td>
+              <button (click)="destroyAction(notice.id,i)" class="btn waves-effect waves-light red lighten-2">
+                彻底删除
+              </button>
+              <button (click)="restoreAction(notice.id,i)" class="btn waves-effect waves-light">
+                还原
+              </button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

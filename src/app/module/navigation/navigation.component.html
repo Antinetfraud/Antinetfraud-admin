@@ -1,0 +1,68 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div>
+
+  <nav class="nav-wrapper background-primary position-nav">
+    <ul id="nav-mobile" class="left">
+      <li>
+        <button mat-button class="background-primary" (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </li>
+      <li class="brand-logo">Admin</li>
+    </ul>
+    <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right:10px">
+      <li>当前用户：{{adminName}}</li>
+    </ul>
+  </nav>
+
+  <mat-sidenav-container style="margin-top:50px">
+
+    <mat-sidenav #sidenav mode="side" opened="true" style="position: fixed;">
+      <div>
+        <ul class="menu" id="menu" style="margin-top:45px;height:600px">
+          <a routerLink="/admin/home">
+            <li class="actived">管理首页</li>
+          </a>
+          <a routerLink="/admin/article/manger/tag/0/page/1">
+            <li>案例管理</li>
+          </a>
+          <a routerLink="/admin/article/create">
+            <li>添加案例</li>
+          </a>
+          <a routerLink="/admin/comment/1">
+            <li>评论管理</li>
+          </a>
+          <a routerLink="/admin/notice/create">
+            <li>撰写公告</li>
+          </a>
+          <a routerLink="/admin/notice/manger/1">
+            <li>公告管理</li>
+          </a>
+          <a routerLink="/admin/contribution/manger/1">
+            <li>投稿管理</li>
+          </a>
+          <a routerLink="/admin/app/upload">
+            <li>上传APP</li>
+          </a>
+          <a routerLink="/admin/user/manger/1">
+            <li>用户管理</li>
+          </a>
+          <a routerLink="/admin/administrator/manger/1">
+            <li>管理员管理</li>
+          </a>
+          <a routerLink="/admin/password/reset">
+            <li>修改密码</li>
+          </a>
+          <a href="javascript:void(0);" (click)="openDialog()">
+            <li>退出登录</li>
+          </a>
+        </ul>
+      </div>
+    </mat-sidenav>
+
+    <main style="width:90%;min-height:600px">
+      <!-- Routed views go here -->
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-container>
+</div>

@@ -1,0 +1,19 @@
+<div class="row">
+  <div *ngIf="code===100" style="margin: 0,auto;text-align:center">
+    <app-loading></app-loading>
+  </div>
+  <div *ngIf="code===404" style="margin: 0,auto;text-align:center">
+    <h4>没有数据</h4>
+  </div>
+  <div *ngIf="code===200">
+    <div class="col m12 s12">
+      <h5>{{ contribution.title }}</h5>
+      <hr>
+      <div class="col m6 s12">
+        <p>创建时间：{{ contribution.created_at }}</p>
+        <p>分类：{{contribution.type}}</p>
+      </div>
+      <div class="col m12 s12" [innerHtml]="contribution.content"></div>
+    </div>
+  </div>
+</div>

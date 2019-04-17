@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <form (ngSubmit)="loginAction()">
+      <div class="input-field col s12">
+        <input name="name" type="text" [(ngModel)]="name" class="validate" required autocomplete="off" />
+        <label for="name" [ngClass]="{'active':active === true}">用户名</label>
+      </div>
+      <div class="input-field col s12">
+        <input name="password" type="text" [(ngModel)]="password" class="validate" required onfocus="this.type='password'" />
+        <label for="password" [ngClass]="{'active':active === true}">密码</label>
+      </div>
+      <div class="input-field col s12">
+        <button class="btn col s12">登录</button>
+      </div>
+    </form>
+  </div>
+</div>

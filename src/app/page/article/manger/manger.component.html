@@ -1,0 +1,86 @@
+<div class="row">
+  {{watch()}}
+  <div class="col m12 s12">
+    <div *ngIf="code===100" style="margin: 0,auto;text-align:center">
+      <app-loading></app-loading>
+    </div>
+
+    <div *ngIf="code===404">
+      <a routerLink="/admin/article/recyclebin">
+        <button class="btn">回收站</button>
+      </a>
+      <h4 style="margin: 0,auto;text-align:center">没有数据</h4>
+    </div>
+
+    <div *ngIf="code===200">
+      <mat-form-field>
+        <mat-select placeholder="分类" [(value)]="tagPaginator.selected">
+          <mat-option *ngFor="let tag of tagPaginator.list" [value]="tag.id" (click)="tagPaginator.change()">
+            {{ tag.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="页码" [(value)]="articlePaginator.selected">
+          <mat-option *ngFor="let item of articlePaginator.list" [value]="item.number" (click)="articlePaginator.change()">
+            {{ item.number }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- <app-paginator [sum]="articles.last_page" [current]="articles.current_page" [url]="routerUrl">
+            </app-paginator> -->
+
+      <button class="btn disabled" id="DeleteBtn" (click)="destroyMultiple()">批量删除</button>
+      <a routerLink="/admin/article/recyclebin">
+        <button class="btn">回收站</button>
+      </a>
+
+      <table class="highlight striped">
+        <thead>
+          <tr>
+            <th data-field="check" style="width:30px">
+              <input type="checkbox" id="selectAll" (click)="checkbox.selectAll()" />
+              <label for="selectAll"></label>
+            </th>
+            <th data-field="id">id</th>
+            <th data-field="title">title</th>
+            <th data-field="title">reading</th>
+            <th data-field="name">created_at</th>
+            <th data-field="name">updated_at</th>
+            <th data-field="price">tag_name</th>
+            <th data-field="price">option</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let article of articles.data;let i=index">
+            <td>
+              <input type="checkbox" class="filled-in" id="{{article.created_at}}" (click)="checkbox.checked(article)" />
+              <label for="{{article.created_at}}"></label>
+            </td>
+            <td>{{article.id}}</td>
+            <td>
+              <a routerLink="/admin/article/show/{{article.id}}">{{article.title}}</a>
+            </td>
+            <td>{{article.reading}}</td>
+            <td>{{article.created_at}}</td>
+            <td>{{article.updated_at}}</td>
+            <td>{{article.tag_name}}</td>
+            <td style="width:130px">
+              <button (click)="destroyAction(article.id,i)" class="btn-floating waves-effect waves-light red lighten-2">
+                <i class="material-icons">delete</i>
+              </button>
+              <a routerLink="/admin/article/edit/{{article.id}}">
+                <button class="btn-floating waves-effect waves-light light-blue">
+                  <i class="material-icons">mode_edit</i>
+                </button>
+              </a>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

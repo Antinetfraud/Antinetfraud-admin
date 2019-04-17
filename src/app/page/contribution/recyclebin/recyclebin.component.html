@@ -1,0 +1,50 @@
+<div class="row">
+  {{watch()}}
+  <a routerLink="/admin/contribution/manger/1">
+    <button class="btn">返回投稿管理</button>
+  </a>
+  <div class="col m12 s12">
+    <div *ngIf="code===100" style="margin: 0,auto;text-align:center">
+      <app-loading></app-loading>
+    </div>
+    <div *ngIf="code===404" style="margin: 0,auto;text-align:center">
+      <h4>没有数据</h4>
+    </div>
+    <div *ngIf="code===200">
+
+      <table class="highlight striped">
+        <thead>
+          <tr>
+            <th data-field="id">id</th>
+            <th data-field="user_name">title</th>
+            <th data-field="content">content</th>
+            <th data-field="content">type</th>
+            <th data-field="created_at">deleted_at</th>
+            <th data-field="option">option</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let contribution of contributions.data;let i=index">
+            <td>{{contribution.id}}</td>
+            <td>
+              <a routerLink="/admin/contribution/show/{{contribution.id}}">{{contribution.title}}</a>
+            </td>
+            <td>{{contribution.content}}</td>
+            <td>{{contribution.type}}</td>
+            <td>{{contribution.deleted_at}}</td>
+            <td>
+              <button (click)="destroyAction(contribution.id,i)" class="btn waves-effect waves-light red lighten-2">
+                彻底删除
+              </button>
+              <button (click)="restoreAction(contribution.id,i)" class="btn waves-effect waves-light">
+                还原
+              </button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

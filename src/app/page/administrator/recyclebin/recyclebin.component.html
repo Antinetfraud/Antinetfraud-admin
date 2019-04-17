@@ -1,0 +1,48 @@
+<div class="row">
+  {{watch()}}
+  <a routerLink="/admin/administrator/manger/1">
+    <button class="btn">返回文章管理</button>
+  </a>
+  <div class="col m12 s12">
+    <div *ngIf="code===100" style="margin: 0,auto;text-align:center">
+      <app-loading></app-loading>
+    </div>
+    <div *ngIf="code===404" style="margin: 0,auto;text-align:center">
+      <h4>没有数据</h4>
+    </div>
+    <div *ngIf="code!==100 && code!==404">
+
+      <table class="highlight striped">
+        <thead>
+          <tr>
+            <th data-field="id">id</th>
+            <th data-field="name">name</th>
+            <th data-field="email">email</th>
+            <th data-field="level">level</th>
+            <th data-field="created_at">deleted_at</th>
+            <th data-field="option">option</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let admin of admins.data;let i=index">
+            <td>{{admin.id}}</td>
+            <td>{{admin.name}}</td>
+            <td>{{admin.email}}</td>
+            <td>{{admin.level}}</td>
+            <td>{{admin.deleted_at}}</td>
+            <td>
+              <button (click)="destroyAction(admin.id,i)" class="btn waves-effect waves-light red lighten-2">
+                彻底删除
+              </button>
+              <button (click)="restoreAction(admin.id,i)" class="btn waves-effect waves-light">
+                还原
+              </button>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>

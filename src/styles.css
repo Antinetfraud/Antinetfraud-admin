@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.background-primary{
+  background-color: #946a4d !important;
+}
+.position-nav{
+  position:fixed; top:0; left:0; width:100%; z-index:2; 
+}
+
+a{
+  color: #946a4d !important;
+}
+
+img{
+  width: 100%;
+  height: auto;
+}
+
+::-webkit-scrollbar {
+  /*整体部分*/
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  /*滑动轨道*/
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  /*滑块*/
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  /*滑块效果*/
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.4);
+}

@@ -1,0 +1,71 @@
+<div class="row">
+  {{watch()}}
+  <div class="col m12 s12">
+    <div *ngIf="code===100" style="margin: 0,auto;text-align:center">
+      <app-loading></app-loading>
+    </div>
+    <div *ngIf="code===404">
+      <a routerLink="/admin/notice/recyclebin">
+        <button class="btn">公告回收站</button>
+      </a>
+      <h4 style="margin: 0,auto;text-align:center">没有数据</h4>
+    </div>
+    <div *ngIf="code===200">
+      <mat-form-field>
+        <mat-select placeholder="页码" [(value)]="noticesPaginator.selected">
+          <mat-option *ngFor="let item of noticesPaginator.list" [value]="item.number" (click)="noticesPaginator.change()">
+            {{ item.number }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button class="btn disabled" id="DeleteBtn" (click)="destroyMultiple()">批量删除</button>
+      <a routerLink="/admin/notice/recyclebin">
+        <button class="btn">公告回收站</button>
+      </a>
+
+      <table class="highlight striped">
+        <thead>
+          <tr>
+            <th data-field="check" style="width:30px">
+              <input type="checkbox" id="selectAll" (click)="checkbox.selectAll()" />
+              <label for="selectAll"></label>
+            </th>
+            <th data-field="id">id</th>
+            <th data-field="title">title</th>
+            <th data-field="created_at">created_at</th>
+            <th data-field="created_at">updated_at</th>
+            <th data-field="author">author</th>
+            <th data-field="option">option</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let notice of notices.data; let i = index">
+            <td>
+              <input type="checkbox" class="filled-in" id="{{notice.id}}" (click)="checkbox.checked(notice)" />
+              <label for="{{notice.id}}"></label>
+            </td>
+            <td>{{notice.id}}</td>
+            <td>
+              <a routerLink="/admin/notice/show/{{notice.id}}">{{notice.title}}</a>
+            </td>
+            <td>{{notice.created_at}}</td>
+            <td>{{notice.updated_at}}</td>
+            <td>{{notice.admin.name}}</td>
+            <td style="width:130px">
+              <button (click)="destroyAction(notice.id,i)" class="btn-floating waves-effect waves-light red lighten-2">
+                <i class="material-icons">delete</i>
+              </button>
+              <a routerLink="/admin/notice/edit/{{notice.id}}">
+                <button class="btn-floating waves-effect waves-light light-blue">
+                  <i class="material-icons">mode_edit</i>
+                </button>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

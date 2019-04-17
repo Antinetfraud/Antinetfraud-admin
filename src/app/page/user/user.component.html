@@ -1,0 +1,75 @@
+<div class="row">
+  {{watch()}}
+  <div class="col m12 s12">
+    <div *ngIf="code===100" style="margin: 0,auto;text-align:center">
+      <app-loading></app-loading>
+    </div>
+
+    <div *ngIf="code===404">
+      <a routerLink="/admin/user/recyclebin">
+        <button class="btn">用户回收站</button>
+      </a>
+      <h4 style="margin: 0,auto;text-align:center">没有数据</h4>
+    </div>
+
+    <div *ngIf="code===200">
+      <mat-form-field>
+        <mat-select placeholder="页码" [(value)]="usersPaginator.selected">
+          <mat-option *ngFor="let item of usersPaginator.list" [value]="item.number" (click)="usersPaginator.change()">
+            {{ item.number }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button class="btn disabled" id="DeleteBtn" (click)="destroyMultiple()">批量删除</button>
+      <a routerLink="/admin/user/recyclebin">
+        <button class="btn">用户回收站</button>
+      </a>
+
+      <table class="highlight striped">
+        <thead>
+          <tr>
+            <th data-field="check" style="width:30px">
+              <input type="checkbox" id="selectAll" (click)="checkbox.selectAll()" />
+              <label for="selectAll"></label>
+            </th>
+            <th data-field="id">id</th>
+            <th data-field="title">name</th>
+            <th data-field="email">email</th>
+            <th data-field="state">state</th>
+            <th data-field="created_at">created_at</th>
+            <th data-field="updated_at">updated_at</th>
+            <th data-field="option">option</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let user of users.data; let i = index">
+            <td>
+              <input type="checkbox" class="filled-in" id="{{user.id}}" (click)="checkbox.checked(user)" />
+              <label for="{{user.id}}"></label>
+            </td>
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.state_name}}</td>
+            <td>{{user.created_at}}</td>
+            <td>{{user.updated_at}}</td>
+            <td style="width:150px">
+              <button (click)="destroyAction(user.id, i)" class="btn-floating waves-effect waves-light red lighten-2" title="删除">
+                <i class="material-icons">delete</i>
+              </button>
+
+              <button *ngIf="user.state===1" (click)="block(user.id, i)" class="btn-floating waves-effect waves-light red lighten-2" title="封禁">
+                <i class="material-icons">lock_outline</i>
+              </button>
+
+              <button *ngIf="user.state===2" (click)="unblock(user.id, i)" class="btn-floating waves-effect waves-ligh" title="解封">
+                <i class="material-icons">lock_open</i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

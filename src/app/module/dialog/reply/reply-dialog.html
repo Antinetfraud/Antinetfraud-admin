@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>
+	回复内容
+</h2>
+<mat-dialog-content>
+	<input [(ngModel)]="replyContent" placeholder="回复内容">
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>取消</button>
+	<!-- Can optionally provide a result for the closing dialog. -->
+	<button mat-button [mat-dialog-close]="replyContent">提交</button>
+</mat-dialog-actions>

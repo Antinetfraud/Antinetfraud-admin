@@ -1,0 +1,28 @@
+<div class="row">
+  <div *ngIf="code === 100" style="margin: 0,auto;text-align:center">
+    <app-loading></app-loading>
+  </div>
+  <div *ngIf="code === 404" style="margin: 0,auto;text-align:center">
+    <h4>没有数据</h4>
+  </div>
+  <div *ngIf="code === 200">
+    <div class="col m12 s12 article_play">
+      <h3 style="text-align: center">{{ article.title }}</h3>
+      <hr>
+      <div class="col m6 s12">
+        <p>创建时间：{{ article.created_at }}</p>
+        <p>修改时间：{{ article.updated_at }}</p>
+        <p>阅读量：{{article.reading}}</p>
+        <p>点赞量：{{article.praise}}</p>
+        <p>来源：{{article.source}}</p>
+        <p>分类：{{article.tag}}</p>
+        <p>正文内容：</p>
+      </div>
+      <div class="col m6 s12">
+        <img src="{{article.image}}" *ngIf="image !== null" />
+      </div>
+      <article class="col m12 s12" [innerHtml]="article.content"></article>
+    </div>
+
+  </div>
+</div>

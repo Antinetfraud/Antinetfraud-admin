@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col s6">
+    <form (ngSubmit)="submit()" class="col s12">
+      <div class="input-field col s12">
+        <input name="title" type="text" class="validate" [(ngModel)]="title">
+        <label for="title" [ngClass]="{'active':active}">标题</label>
+      </div>
+      <div class="input-field col s12">
+        <input name="source" type="text" class="validate" [(ngModel)]="source">
+        <label for="source" [ngClass]="{'active':active}">来源</label>
+      </div>
+
+      <div class="file-field input-field col s12">
+        <div class="btn">
+          <span>图片</span>
+          <input type="file" accept="image/gif,image/jpeg,image/png,image/bmp" name="images" (change)="getFile($event)">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+      </div>
+
+      <select name="tag_id" class="browser-default col m6 s12" [(ngModel)]="tag_id">
+        <option value="" disabled selected>选择类型</option>
+        <option value="1">网络诈骗</option>
+        <option value="2">电信诈骗</option>
+        <option value="3">小小贴士</option>
+      </select>
+
+      <div class="input-field col s12">
+        <textarea name="content" class="materialize-textarea" style="min-height:200px" (ngModelChange)="contentChange($event)" [(ngModel)]="content"></textarea>
+        <label for="content" [ngClass]="{'active':active}">内容</label>
+      </div>
+
+      <div class="col s12">
+        <button class="btn waves-effect waves-light light-blue" type="submit" name="action">提交
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="col s6 article">
+    <img src="{{imgURL}}" *ngIf="image !== null" />
+    <div [innerHtml]="preview"></div>
+  </div>
+</div>

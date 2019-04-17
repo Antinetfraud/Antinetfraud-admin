@@ -1,0 +1,29 @@
+<div class="row">
+  <form (ngSubmit)="submit()" class="col s12">
+    <div class="file-field input-field col s12 m7">
+      <div class="waves-effect waves-light btn btn-large">
+        <span>
+          <i class="material-icons left">android</i>选择APK文件
+        </span>
+        <input type="file" accept=".apk" name="apk" (change)="getFile($event)">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+    <div class="input-field col s12 m7">
+      <input name="version" type="text" class="validate" [(ngModel)]="version" />
+      <label for="version">版本号</label>
+    </div>
+    <div class="input-field col s12 m7">
+      <textarea name="update_log" class="materialize-textarea" style="height:300px" [(ngModel)]="update_log">
+      </textarea>
+      <label for="update_log">文本域</label>
+    </div>
+    <div class="col s12 m6">
+      <button class="btn waves-effect waves-light light-blue" type="submit" name="action">提交
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </form>
+</div>

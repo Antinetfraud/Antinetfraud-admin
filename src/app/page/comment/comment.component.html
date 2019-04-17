@@ -1,0 +1,80 @@
+<div class="row">
+  {{watch()}}
+  <div class="col m12 s12">
+    <div *ngIf="code===100" style="margin: 0,auto;text-align:center">
+      <app-loading></app-loading>
+    </div>
+    <div *ngIf="code===404">
+      <a routerLink="/admin/comment/recyclebin">
+        <button class="btn">评论回收站</button>
+      </a>
+      <h4 style="margin: 0,auto;text-align:center">没有数据</h4>
+    </div>
+    <div *ngIf="code===200">
+
+      <mat-form-field>
+        <mat-select placeholder="页码" [(value)]="commentsPaginator.selected">
+          <mat-option *ngFor="let item of commentsPaginator.list" [value]="item.number" (click)="commentsPaginator.change()">
+            {{ item.number }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button class="btn disabled" id="DeleteBtn" (click)="destroyMultiple()">批量删除</button>
+      <a routerLink="/admin/comment/recyclebin">
+        <button class="btn">评论回收站</button>
+      </a>
+
+      <table class="highlight striped">
+        <thead>
+          <tr>
+            <th data-field="check" style="width:30px">
+              <input type="checkbox" id="selectAll" (click)="checkbox.selectAll()" />
+              <label for="selectAll"></label>
+            </th>
+            <th data-field="id">id</th>
+            <th data-field="user_name">user_name</th>
+            <th data-field="created_at">article_id</th>
+            <th data-field="content">content</th>
+            <th data-field="content">pass</th>
+            <th data-field="author_reply">author_reply</th>
+            <th data-field="created_at">created_at</th>
+            <th data-field="option">option</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let comment of comments.data;let i = index">
+            <td>
+              <input type="checkbox" class="filled-in" id="{{comment.id}}" (click)="checkbox.checked(comment)" />
+              <label for="{{comment.id}}"></label>
+            </td>
+            <td>{{comment.id}}</td>
+            <td>{{comment.user_name}}</td>
+            <td>{{comment.article_id}}</td>
+            <td>{{comment.content}}</td>
+            <td>{{comment.pass}}</td>
+            <td>{{comment.author_reply}}</td>
+            <td>{{comment.created_at}}</td>
+            <td style="width:180px ">
+              <button (click)="destroyAction(comment.id,i) " class="btn-floating waves-effect waves-light red lighten-2 ">
+                <i class="material-icons ">delete</i>
+              </button>
+              <button (click)="reply(comment.id)" class="btn-floating waves-effect waves-light light-blue ">
+                <i class="material-icons ">chat_bubble</i>
+              </button>
+              <button *ngIf="comment.pass===true" (click)="block(comment.id, i)" class="btn-floating waves-effect waves-light red lighten-2"
+                title="封禁">
+                <i class="material-icons">lock_outline</i>
+              </button>
+              <button *ngIf="comment.pass===false" (click)="pass(comment.id, i)" class="btn-floating waves-effect waves-ligh" title="通过">
+                <i class="material-icons">lock_open</i>
+              </button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
